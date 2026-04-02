@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>For Obeid ❤️</title>
+
+<style>
+body {
+    margin: 0;
+    min-height: 100vh;
+    overflow-y: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Segoe UI', sans-serif;
+    background: radial-gradient(circle at center, #ff4d6d, #8b0000, #000);
+}
+
+/* 🧸 Teddy */
+#teddy {
+    text-align: center;
+    cursor: pointer;
+}
+#teddy div {
+    font-size: 90px;
+}
+#teddy span {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 10px 20px;
+    background: #ff3366;
+    color: white;
+    border-radius: 25px;
+    animation: pulse 2s infinite;
+}
+
+/* 🎂 Cake */
+#cake {
+    display: none;
+    text-align: center;
+    font-size: 80px;
+    cursor: pointer;
+    animation: bounce 2s infinite;
+}
+#cake p {
+    color: #fff;
+    font-size: 18px;
+}
+
+/* 🎉 Birthday */
+#birthday {
+    display: none;
+    font-size: 32px;
+    color: white;
+    text-align: center;
+    text-shadow: 0 0 20px pink, 0 0 40px red;
+    animation: glow 1.5s infinite alternate;
+}
+
+/* 💌 Letter */
+#letter {
+    display: none;
+    width: 90%;
+    max-width: 500px;
+    max-height: 80vh;
+    overflow-y: auto;
+    background: #fff8f5;
+    border-radius: 25px;
+    padding: 30px;
+    text-align: center;
+    line-height: 1.8;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.4);
+}
+
+/* ❤️ Hearts */
+.heart {
+    position: absolute;
+    font-size: 20px;
+    animation: floatUp 6s linear infinite;
+}
+
+/* 🎉 Confetti */
+.confetti {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    background: red;
+    top: 0;
+    animation: fall 3s linear;
+}
+
+/* 💙 Infinite love */
+#infiniteLove {
+    margin-top: 15px;
+    color: #ff3366;
+}
+
+/* ❤️ Buttons */
+button {
+    margin: 10px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 25px;
+    background: #ff3366;
+    color: white;
+    cursor: pointer;
+}
+
+/* ✨ Animations */
+@keyframes pulse {50% {transform: scale(1.1);}}
+@keyframes floatUp {from {transform: translateY(100vh);} to {transform: translateY(-10vh);}}
+@keyframes fall {to {transform: translateY(100vh);}}
+@keyframes bounce {50% {transform: translateY(-10px);}}
+@keyframes glow {from {text-shadow:0 0 10px pink;} to {text-shadow:0 0 30px red;}}
+
+</style>
+</head>
+
+<body>
+
+<!-- 🧸 Teddy -->
+<div id="teddy" onclick="start()">
+    <div>🧸</div>
+    <span>Open me ❤️</span>
+</div>
+
+<!-- 🎂 Cake -->
+<div id="cake">
+    🎂
+    <p>Cut your cake Obeid 🎂</p>
+</div>
+
+<!-- 🎉 Birthday -->
+<div id="birthday">
+    🎉 Happy Birthday My Love Obeid ❤️ 🎉
+</div>
+
+<!-- 💌 Letter -->
+<div id="letter">
+<h2>Hey Obeid, my love ❤️</h2>
+
+<p>
+    happiesttttt birthdayyyy my babyyyyyyy.....
+I love your smile so much… when you smile, everything else disappears.  
+It feels like my whole world becomes happier just because of you.  
+
+Your voice still gives me butterflies… even after all this time.  
+My hands still shiver when I talk to you.  
+
+I don’t say it enough, but I’m really lucky to have you.
+
+You’re my favorite notification 😌
+
+I don’t know how to explain it perfectly…  
+but I know one thing for sure—  
+I am completely, endlessly yours.  
+
+No words are enough to explain how much I love you…  
+but still… I love you ❤️  
+
+and if I could choose again… I’d still choose you, every single time.
+</p>
+
+<div id="infiniteLove"></div>
+
+<!-- 💙 Love Question -->
+<button onclick="showQuestion()">Open if you can answer 😏</button>
+
+<div id="questionBox" style="display:none;">
+    <p><b>Do you love me? 💙</b></p>
+    <button onclick="wrongAnswer()">No 😒</button>
+    <button onclick="rightAnswer()">Yes 😏</button>
+    <div id="answerResult"></div>
+</div>
+
+</div>
+
+<!-- 🎶 Music -->
+<audio id="music">
+  <source src="song.mp4" type="audio/mp4">
+</audio>
+
+<script>
+
+// 🧸 → 🎂
+function start(){
+    document.getElementById("teddy").style.display="none";
+    document.getElementById("cake").style.display="block";
+}
+
+// 🎂 click
+document.getElementById("cake").onclick = function(){
+    this.innerHTML = "🎂✨🎉";
+
+    // colorful burst
+    for(let i=0;i<50;i++){
+        let c=document.createElement("div");
+        c.className="confetti";
+        c.style.left=Math.random()*100+"vw";
+        c.style.background=["red","pink","yellow","blue"][Math.floor(Math.random()*4)];
+        document.body.appendChild(c);
+    }
+
+    setTimeout(()=>{
+        this.style.display="none";
+
+        let b = document.getElementById("birthday");
+        b.style.display="block";
+
+        let m = document.getElementById("music");
+        m.volume = 0;
+        m.play();
+
+        let vol=0;
+        let fade=setInterval(()=>{
+            if(vol<0.5){vol+=0.05; m.volume=vol;}
+            else clearInterval(fade);
+        },200);
+
+        setTimeout(()=>{
+            b.style.display="none";
+            document.getElementById("letter").style.display="block";
+            infiniteLove();
+            hearts();
+        },3000);
+
+    },1200);
+}
+
+// ❤️ infinite love
+function infiniteLove(){
+    let l=document.getElementById("infiniteLove");
+    let text="I love you ❤️ ";
+    let i=0;
+    let t=setInterval(()=>{
+        l.innerHTML+=text;
+        i++;
+        if(i>60) clearInterval(t);
+    },80);
+}
+
+// 💖 hearts
+function hearts(){
+    setInterval(()=>{
+        let h=document.createElement("div");
+        h.className="heart";
+        h.innerHTML="❤️";
+        h.style.left=Math.random()*100+"vw";
+        document.body.appendChild(h);
+    },400);
+}
+
+// 💙 question
+function showQuestion(){
+    document.getElementById("questionBox").style.display="block";
+}
+
+function wrongAnswer(){
+    document.getElementById("answerResult").innerHTML="Wrong answer 😤 try again";
+}
+
+function rightAnswer(){
+    document.getElementById("answerResult").innerHTML="I too love you soooo muchhh Obeid 😘💙";
+}
+
+</script>
+
+</body>
+</html>
